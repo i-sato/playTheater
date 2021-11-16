@@ -1,0 +1,65 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+apply from: '../shared_dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "isato.made.playtheater"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    def BASE_URL = "https://api.themoviedb.org/3/"
+    def BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original"
+
+    flavorDimensions 'environment'
+    productFlavors {
+        development {
+            dimension 'environment'
+            applicationId 'isato.made.playtheater.dev'
+            versionNameSuffix '-dev'
+            buildConfigField "String", "API_URL", "\"$BASE_URL\""
+            buildConfigField "String", "API_KEY_QUERY", "\"?api_key=\""
+            buildConfigField "String", "API_IMAGE_URL", "\"$BASE_IMAGE_URL\""
+        }
+        production {
+            dimension 'environment'
+            buildConfigField "String", "API_URL", "\"$BASE_URL\""
+            buildConfigField "String", "API_KEY_QUERY", "\"?api_key=\""
+            buildConfigField "String", "API_IMAGE_URL", "\"$BASE_IMAGE_URL\""
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+}
