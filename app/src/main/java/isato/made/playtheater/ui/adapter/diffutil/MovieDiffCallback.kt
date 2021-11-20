@@ -1,9 +1,9 @@
-package isato.made.playtheater.core.ui.diffutil
+package isato.made.playtheater.ui.adapter.diffutil
 
 import androidx.recyclerview.widget.DiffUtil
-import isato.made.playtheater.core.domain.model.Movie
+import isato.made.playtheater.model.Movie
 
-class MovieDiffCallback: DiffUtil.ItemCallback<Movie>() {
+class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean =
         oldItem.movieId == newItem.movieId
 

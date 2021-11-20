@@ -2,14 +2,14 @@ package isato.made.playtheater.core.util
 
 import isato.made.playtheater.core.data.source.local.entity.MovieEntity
 import isato.made.playtheater.core.data.source.remote.response.MovieResponse
-import isato.made.playtheater.core.domain.model.Movie
+import isato.made.playtheater.core.domain.model.MovieDomain
 
 object DataMapper {
 
     fun mapResponsesToEntities(input: List<MovieResponse>): List<MovieEntity> {
         val movies = mutableListOf<MovieEntity>()
         input.map {
-            val movie = MovieEntity(
+            val movieDomain = MovieEntity(
                 movieId = it.id,
                 title = it.title,
                 overview = it.overview,
@@ -17,14 +17,14 @@ object DataMapper {
                 backdropPath = it.backdropPath,
                 releaseDate = DateConverter.stringToTimestamp(it.releaseDate)
             )
-            movies.add(movie)
+            movies.add(movieDomain)
         }
         return movies
     }
 
-    fun mapEntitiesToDomain(input: List<MovieEntity>): List<Movie> =
+    fun mapEntitiesToDomain(input: List<MovieEntity>): List<MovieDomain> =
         input.map {
-            Movie(
+            MovieDomain(
                 movieId = it.movieId,
                 title = it.title,
                 overview = it.overview,
