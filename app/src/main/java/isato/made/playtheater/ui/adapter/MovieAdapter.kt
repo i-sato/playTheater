@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import isato.made.playtheater.core.databinding.ItemListMovieBinding
+import isato.made.playtheater.databinding.ItemListMovieBinding
 import isato.made.playtheater.core.util.ext.loadImage
 import isato.made.playtheater.model.Movie
 import isato.made.playtheater.ui.adapter.diffutil.MovieDiffCallback
 
 class MovieAdapter: ListAdapter<Movie, MovieAdapter.ListMovieViewHolder>(MovieDiffCallback()) {
 
-    var onItemClick: ((String) -> Unit)? = null
+    var onItemClick: ((String, String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListMovieViewHolder {
         val itemListMovieBinding =
@@ -35,7 +35,7 @@ class MovieAdapter: ListAdapter<Movie, MovieAdapter.ListMovieViewHolder>(MovieDi
                 tvItemOverview.text = movie.overview
             }
             itemView.setOnClickListener {
-                onItemClick?.invoke(movie.movieId)
+                onItemClick?.invoke(movie.movieId, movie.title)
             }
         }
     }
