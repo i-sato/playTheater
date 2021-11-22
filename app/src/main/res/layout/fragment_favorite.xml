@@ -5,4 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.favorite.FavoriteFragment">
 
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/app_bar_main" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import isato.made.playtheater.core.data.Resource
 import isato.made.playtheater.ui.adapter.MovieAdapter
 import isato.made.playtheater.databinding.FragmentHomeBinding
+import isato.made.playtheater.util.ext.setupActionBar
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -34,6 +35,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
+            setupActionBar(binding.toolbarLayout.toolbar)
+
             val movieAdapter = MovieAdapter()
             movieAdapter.onItemClick = { movieId, movieTitle ->
                 navigateToDetailFragment(movieId, movieTitle)

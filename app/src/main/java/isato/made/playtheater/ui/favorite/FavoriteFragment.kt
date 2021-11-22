@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import isato.made.playtheater.databinding.FragmentFavoriteBinding
+import isato.made.playtheater.util.ext.setupActionBar
 
 class FavoriteFragment : Fragment() {
 
@@ -18,6 +19,14 @@ class FavoriteFragment : Fragment() {
     ): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (activity != null) {
+            setupActionBar(binding.toolbarLayout.toolbar)
+        }
     }
 
     override fun onDestroyView() {
