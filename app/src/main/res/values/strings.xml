@@ -3,4 +3,11 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_favorite">Favorite</string>
+
+    <string name="status">Status</string>
+    <string name="release_date">Release Date</string>
+    <string name="first_air_date">First Air Date</string>
+    <string name="overview">Overview</string>
+    <string name="add_favorite">Add to favorite</string>
+    <string name="error">Oops.. something went wrong</string>
 </resources>

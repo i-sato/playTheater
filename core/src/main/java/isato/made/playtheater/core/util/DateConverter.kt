@@ -5,9 +5,9 @@ import androidx.room.TypeConverter
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
+@SuppressLint("SimpleDateFormat")
 object DateConverter {
 
-    @SuppressLint("SimpleDateFormat")
     @TypeConverter
     @JvmStatic
     fun stringToTimestamp(value: String?): Long? {
@@ -18,6 +18,14 @@ object DateConverter {
                 val ts = Timestamp(it.time)
                 ts.time
             }
+        }
+    }
+
+    @TypeConverter
+    @JvmStatic
+    fun fromTimestamp(value: Long?): String? {
+        return value?.let {
+            SimpleDateFormat("dd MMM yyyy").format(it)
         }
     }
 

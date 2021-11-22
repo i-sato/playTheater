@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import isato.made.playtheater.core.data.Resource
 import isato.made.playtheater.ui.adapter.MovieAdapter
 import isato.made.playtheater.databinding.FragmentHomeBinding
-import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -35,8 +35,8 @@ class HomeFragment : Fragment() {
 
         if (activity != null) {
             val movieAdapter = MovieAdapter()
-            movieAdapter.onItemClick = { movieId ->
-                startMovieDetailActivity(movieId)
+            movieAdapter.onItemClick = { movieId, movieTitle ->
+                navigateToDetailFragment(movieId, movieTitle)
             }
 
             binding.rvMovie.apply {
@@ -65,8 +65,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun startMovieDetailActivity(movieId: String) {
-        Timber.d("Movie ID: $movieId")
+    private fun navigateToDetailFragment(movieId: String, movieTitle: String) {
+        val action = HomeFragmentDirections.actionNavHomeToDetailFragment(movieId, movieTitle)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

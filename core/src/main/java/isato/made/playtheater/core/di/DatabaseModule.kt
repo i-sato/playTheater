@@ -22,7 +22,7 @@ object DatabaseModule {
     ): MovieDatabase = Room.databaseBuilder(
         context,
         MovieDatabase::class.java, "playTheater.db"
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
     @Provides
     fun provideMovieDao(database: MovieDatabase): MovieDao =

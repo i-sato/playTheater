@@ -2,6 +2,7 @@ package isato.made.playtheater.core.data.source.remote
 
 import isato.made.playtheater.core.data.source.remote.network.ApiResponse
 import isato.made.playtheater.core.data.source.remote.network.ApiService
+import isato.made.playtheater.core.data.source.remote.response.MovieDetailResponse
 import isato.made.playtheater.core.data.source.remote.response.MovieResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -25,6 +26,18 @@ class RemoteDataSource @Inject constructor(
                     movies.isNotEmpty() -> emit(ApiResponse.Success(movies))
                     else -> emit(ApiResponse.Empty)
                 }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Timber.e(e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getMovieById(movieId: String): Flow<ApiResponse<MovieDetailResponse>> {
+        return flow {
+            try {
+                val response = apiService.getMovieById(movieId)
+                emit(ApiResponse.Success(response))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
                 Timber.e(e.toString())

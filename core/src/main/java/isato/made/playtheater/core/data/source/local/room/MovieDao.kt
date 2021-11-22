@@ -1,19 +1,43 @@
 package isato.made.playtheater.core.data.source.local.room
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import isato.made.playtheater.core.data.source.local.entity.GenreEntity
 import isato.made.playtheater.core.data.source.local.entity.MovieEntity
+import isato.made.playtheater.core.data.source.local.entity.MovieGenreCrossRef
+import isato.made.playtheater.core.data.source.local.entity.MovieWithGenre
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface MovieDao {
+abstract class MovieDao {
 
     @Query("SELECT * FROM movie")
-    fun getAllMovies(): Flow<List<MovieEntity>>
+    abstract fun getAllMovies(): Flow<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovies(movies: List<MovieEntity>)
+    abstract suspend fun insertMovies(movies: List<MovieEntity>)
+
+    @Transaction
+    @Query("SELECT * FROM movie WHERE movieId = :movieId")
+    abstract fun getMovieById(movieId: String): Flow<MovieWithGenre>
+
+    @Transaction
+    open suspend fun insertMovieGenreAndRefTransaction(
+        movie: MovieEntity,
+        genres: List<GenreEntity>?,
+        movieGenreCrossRef: List<MovieGenreCrossRef>?
+    ) {
+        updateMovie(movie)
+        insertGenres(genres)
+        insertMovieGenreCrossRef(movieGenreCrossRef)
+    }
+
+    @Update
+    abstract suspend fun updateMovie(movie: MovieEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun insertGenres(genres: List<GenreEntity>?)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun insertMovieGenreCrossRef(movieGenreCrossRef: List<MovieGenreCrossRef>?)
 
 }

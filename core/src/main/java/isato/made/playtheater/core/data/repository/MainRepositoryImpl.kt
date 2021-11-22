@@ -5,7 +5,9 @@ import isato.made.playtheater.core.data.Resource
 import isato.made.playtheater.core.data.source.local.LocalDataSource
 import isato.made.playtheater.core.data.source.remote.RemoteDataSource
 import isato.made.playtheater.core.data.source.remote.network.ApiResponse
+import isato.made.playtheater.core.data.source.remote.response.MovieDetailResponse
 import isato.made.playtheater.core.data.source.remote.response.MovieResponse
+import isato.made.playtheater.core.domain.model.MovieDetailDomain
 import isato.made.playtheater.core.domain.model.MovieDomain
 import isato.made.playtheater.core.domain.repository.MainRepository
 import isato.made.playtheater.core.util.DataMapper
@@ -34,5 +36,32 @@ class MainRepositoryImpl @Inject constructor(
                 val movies = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertMovies(movies)
             }
+        }.asFlow()
+
+    override fun getMovieById(movieId: String): Flow<Resource<MovieDetailDomain>> =
+        object : NetworkBoundResource<MovieDetailDomain, MovieDetailResponse>() {
+            override fun loadFromDB(): Flow<MovieDetailDomain> =
+                localDataSource.getMovieById(movieId).map {
+                    DataMapper.mapDetailEntityToDomain(it)
+                }
+
+            override fun shouldFetch(data: MovieDetailDomain?): Boolean =
+                data?.genres == null || data.genres.isEmpty()
+
+            override suspend fun createCall(): Flow<ApiResponse<MovieDetailResponse>> =
+                remoteDataSource.getMovieById(movieId)
+
+            override suspend fun saveCallResult(data: MovieDetailResponse) {
+                val movie = DataMapper.mapDetailResponseToEntity(data)
+                val genres = data.genres?.let { DataMapper.mapGenreDetailResponsesToEntities(it) }
+                val movieGenreCrossRef = data.genres?.let { genreResponses ->
+                    DataMapper.mapGenreDetailResponsesToGenreRefEntities(
+                        data.id,
+                        genreResponses
+                    )
+                }
+                localDataSource.insertMovieGenreAndRefTransaction(movie, genres, movieGenreCrossRef)
+            }
+
         }.asFlow()
 }

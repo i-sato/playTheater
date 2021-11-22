@@ -3,14 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/drawable/ic_favorite_baseline_white_24.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/drawable/ic_favorite_blue_24.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/drawable/ic_favorite_outline_white_24.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/drawable/ic_home_blue_24.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/drawable/ic_playtheater.xml" value="0.11614583333333334" />
-        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/content_detail.xml" value="0.22" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/content_detail_header.xml" value="0.22" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/error_view.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/item_genre.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/item_list_movie.xml" value="0.17980072463768115" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/nav_header_main.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/menu/activity_main_drawer.xml" value="0.18" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/core/src/main/res/layout/item_list_movie.xml" value="0.1" />
