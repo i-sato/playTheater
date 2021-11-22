@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import isato.made.playtheater.core.util.ext.showSnackbarNotice
 import isato.made.playtheater.databinding.FragmentDetailBinding
 import isato.made.playtheater.model.MovieDetail
 import isato.made.playtheater.ui.adapter.GenreAdapter
+import isato.made.playtheater.util.ext.setupActionBar
 import jp.wasabeef.glide.transformations.ColorFilterTransformation
 import timber.log.Timber
 
@@ -47,6 +49,7 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
+            binding?.toolbar?.let { setupActionBar(it) }
             detailViewModel.getMovieById(args.movieId)
 
             genreAdapter = GenreAdapter()
@@ -59,12 +62,11 @@ class DetailFragment : Fragment() {
                 Timber.d("Detail Result: $detail")
                 when (detail) {
                     is Resource.Success -> {
-                        binding?.progressBar?.visibility = View.GONE
+                        showLoading(false)
                         showMovieDetail(detail.data)
                     }
-                    is Resource.Loading -> binding?.progressBar?.visibility = View.VISIBLE
+                    is Resource.Loading -> showLoading(true)
                     is Resource.Error -> {
-                        binding?.progressBar?.visibility = View.GONE
                         binding?.root?.showSnackbarNotice(
                             detail.message ?: getString(R.string.error)
                         )
@@ -76,11 +78,6 @@ class DetailFragment : Fragment() {
 
     private fun showMovieDetail(movieDetail: MovieDetail?) {
         binding?.collapsingToolbar?.title = args.movieTitle
-        binding?.ivBackdrop?.visibility = View.VISIBLE
-        headerBinding?.contentHeader?.visibility = View.VISIBLE
-        binding?.content?.visibility = View.VISIBLE
-        binding?.fabFavorite?.visibility = View.VISIBLE
-
         movieDetail?.backdropPath?.let { path ->
             binding?.ivBackdrop?.loadTransformImage(
                 path,
@@ -94,6 +91,24 @@ class DetailFragment : Fragment() {
         genreAdapter.submitList(movieDetail?.genres)
         detailBinding?.tvOverview?.text = movieDetail?.overview ?: "-"
         movieDetail?.isFavorite?.let { setFavorite(it) }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding?.appbarDetail?.setBackgroundColor(
+            if (isLoading) ContextCompat.getColor(
+                requireContext(),
+                R.color.grey
+            ) else ContextCompat.getColor(requireContext(), R.color.dark_blue)
+        )
+        binding?.ivBackdrop?.visibility = if (isLoading) View.GONE else View.VISIBLE
+        headerBinding?.root?.visibility = if (isLoading) View.GONE else View.VISIBLE
+        binding?.content?.visibility = if (isLoading) View.GONE else View.VISIBLE
+        binding?.fabFavorite?.visibility = if (isLoading) View.GONE else View.VISIBLE
+
+        binding?.contentDetailHeaderPlaceholder?.root?.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
+        binding?.contentDetailPlaceholder?.root?.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun setFavorite(isFavorite: Boolean) {

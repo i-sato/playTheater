@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:shimmer_duration="1500"
+    tools:context=".ui.detail.DetailFragment">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shimmer_duration="1500">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/content_detail_margin"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            app:contentPadding="@dimen/content_detail_padding">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <TextView
+                    android:id="@+id/tv_genre_placeholder_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_grey"
+                    android:minEms="4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_genre_placeholder_mid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/tv_genre_margin"
+                    android:background="@color/dark_grey"
+                    android:minEms="4"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_genre_placeholder_start"
+                    app:layout_constraintStart_toEndOf="@id/tv_genre_placeholder_start"
+                    app:layout_constraintTop_toTopOf="@+id/tv_genre_placeholder_start" />
+
+                <TextView
+                    android:id="@+id/tv_genre_placeholder_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/tv_genre_margin"
+                    android:background="@color/dark_grey"
+                    android:minEms="4"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_genre_placeholder_mid"
+                    app:layout_constraintStart_toEndOf="@id/tv_genre_placeholder_mid"
+                    app:layout_constraintTop_toTopOf="@+id/tv_genre_placeholder_mid" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/br_content_detail_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="tv_genre_placeholder_start,tv_genre_placeholder_mid,tv_genre_placeholder_end" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/tv_vertical_margin"
+                    android:background="@color/dark_grey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_genre_placeholder_start"
+                    app:layout_constraintTop_toTopOf="@id/br_content_detail_bottom" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</androidx.core.widget.NestedScrollView>

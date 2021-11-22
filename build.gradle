@@ -17,6 +17,7 @@ buildscript {
         navigation_version = '2.3.5'
         retrofit_version = '2.9.0'
         room_version = '2.3.0'
+        shimmer_version = '0.5.0'
         timber_version = '4.7.1'
 
         // Test

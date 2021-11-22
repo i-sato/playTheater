@@ -10,4 +10,5 @@
     <dimen name="detail_header_margin">16dp</dimen>
     <dimen name="content_detail_margin">8dp</dimen>
     <dimen name="content_detail_padding">16dp</dimen>
+    <dimen name="tv_genre_margin">5dp</dimen>
 </resources>

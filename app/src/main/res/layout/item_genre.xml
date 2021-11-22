@@ -5,11 +5,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="@dimen/tv_genre_margin">
 
     <TextView
         android:id="@+id/tv_genre"
-        android:padding="5dp"
+        android:padding="@dimen/tv_genre_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Genre" />
