@@ -91,6 +91,13 @@ class DetailFragment : Fragment() {
         genreAdapter.submitList(movieDetail?.genres)
         detailBinding?.tvOverview?.text = movieDetail?.overview ?: "-"
         movieDetail?.isFavorite?.let { setFavorite(it) }
+        binding?.fabFavorite?.setOnClickListener {
+            movieDetail?.isFavorite?.let { favorite ->
+                detailViewModel.setFavoriteMovie()
+                val newState = !favorite
+                setFavorite(newState)
+            }
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {

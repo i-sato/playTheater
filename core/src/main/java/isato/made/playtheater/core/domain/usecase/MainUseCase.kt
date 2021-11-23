@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface MainUseCase {
     fun getAllMovies(): Flow<Resource<List<MovieDomain>>>
     fun getMovieById(movieId: String): Flow<Resource<MovieDetailDomain>>
+    suspend fun setFavoriteMovie(movieDetailDomain: MovieDetailDomain, newState: Boolean)
 }

@@ -26,4 +26,6 @@ class LocalDataSource @Inject constructor(
         movieGenreCrossRef: List<MovieGenreCrossRef>?
     ) = movieDao.insertMovieGenreAndRefTransaction(movie, genres, movieGenreCrossRef)
 
+    suspend fun updateMovie(movie: MovieEntity) = movieDao.updateMovie(movie)
+
 }

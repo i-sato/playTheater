@@ -2,6 +2,7 @@ package isato.made.playtheater.util
 
 import isato.made.playtheater.core.domain.model.MovieDetailDomain
 import isato.made.playtheater.core.domain.model.MovieDomain
+import isato.made.playtheater.core.domain.model.MovieGenreDomain
 import isato.made.playtheater.model.Genre
 import isato.made.playtheater.model.Movie
 import isato.made.playtheater.model.MovieDetail
@@ -33,6 +34,31 @@ object DataMapper {
         }
         return with(input) {
             MovieDetail(
+                movieId = movieId,
+                title = title,
+                overview = overview,
+                posterPath = posterPath,
+                backdropPath = backdropPath,
+                genres = genres,
+                releaseDate = releaseDate,
+                tagline = tagline,
+                status = status,
+                isFavorite = isFavorite
+            )
+        }
+    }
+
+    fun mapDetailPresentationToDomain(input: MovieDetail): MovieDetailDomain {
+        val genres = mutableListOf<MovieGenreDomain>()
+        input.genres?.map {
+            val genreDomain = MovieGenreDomain(
+                genreId = it.genreId,
+                name = it.name
+            )
+            genres.add(genreDomain)
+        }
+        return with(input) {
+            MovieDetailDomain(
                 movieId = movieId,
                 title = title,
                 overview = overview,

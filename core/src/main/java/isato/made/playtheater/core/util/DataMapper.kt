@@ -109,4 +109,20 @@ object DataMapper {
         }
     }
 
+    fun mapDetailDomainToEntity(input: MovieDetailDomain): MovieEntity {
+        return with(input) {
+            MovieEntity(
+                movieId = movieId,
+                title = title,
+                overview = overview,
+                posterPath = posterPath,
+                backdropPath = backdropPath,
+                releaseDate = DateConverter.stringToTimestamp(releaseDate, "dd MMM yyyy"),
+                status = status,
+                tagline = tagline,
+                isFavorite = isFavorite
+            )
+        }
+    }
+
 }

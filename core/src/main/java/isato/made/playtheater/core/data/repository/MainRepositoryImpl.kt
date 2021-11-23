@@ -7,17 +7,21 @@ import isato.made.playtheater.core.data.source.remote.RemoteDataSource
 import isato.made.playtheater.core.data.source.remote.network.ApiResponse
 import isato.made.playtheater.core.data.source.remote.response.MovieDetailResponse
 import isato.made.playtheater.core.data.source.remote.response.MovieResponse
+import isato.made.playtheater.core.di.IoDispatcher
 import isato.made.playtheater.core.domain.model.MovieDetailDomain
 import isato.made.playtheater.core.domain.model.MovieDomain
 import isato.made.playtheater.core.domain.repository.MainRepository
 import isato.made.playtheater.core.util.DataMapper
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : MainRepository {
 
     override fun getAllMovies(): Flow<Resource<List<MovieDomain>>> =
@@ -64,4 +68,11 @@ class MainRepositoryImpl @Inject constructor(
             }
 
         }.asFlow()
+
+    override suspend fun setFavoriteMovie(movieDetailDomain: MovieDetailDomain, newState: Boolean) =
+        withContext(ioDispatcher) {
+            movieDetailDomain.isFavorite = newState
+            val movie = DataMapper.mapDetailDomainToEntity(movieDetailDomain)
+            localDataSource.updateMovie(movie)
+        }
 }

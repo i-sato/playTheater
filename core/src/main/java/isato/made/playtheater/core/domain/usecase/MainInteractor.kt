@@ -16,4 +16,7 @@ class MainInteractor @Inject constructor(
 
     override fun getMovieById(movieId: String): Flow<Resource<MovieDetailDomain>> =
         mainRepository.getMovieById(movieId)
+
+    override suspend fun setFavoriteMovie(movieDetailDomain: MovieDetailDomain, newState: Boolean) =
+        mainRepository.setFavoriteMovie(movieDetailDomain, newState)
 }

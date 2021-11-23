@@ -7,7 +7,7 @@ data class MovieDetail(
     val overview: String? = null,
     val posterPath: String? = null,
     val backdropPath: String? = null,
-    val genres: List<Genre?>? = null,
+    val genres: List<Genre>? = null,
     val releaseDate: String? = null,
     val tagline: String? = null,
     val status: String? = null,

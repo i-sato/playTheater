@@ -40,4 +40,15 @@ class DetailViewModel @Inject constructor(
         }
     }
 
+    fun setFavoriteMovie() {
+        val movieDetail = _movieDetail.value?.data
+        if (movieDetail != null) {
+            val movieDetailDomain = DataMapper.mapDetailPresentationToDomain(movieDetail)
+            val newState = !movieDetail.isFavorite
+            viewModelScope.launch {
+                mainUseCase.setFavoriteMovie(movieDetailDomain, newState)
+            }
+        }
+    }
+
 }

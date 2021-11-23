@@ -11,4 +11,6 @@ interface MainRepository {
 
     fun getMovieById(movieId: String): Flow<Resource<MovieDetailDomain>>
 
+    suspend fun setFavoriteMovie(movieDetailDomain: MovieDetailDomain, newState: Boolean)
+
 }
