@@ -5,8 +5,8 @@ import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import isato.made.playtheater.core.data.Resource
 import isato.made.playtheater.core.domain.usecase.MainUseCase
-import isato.made.playtheater.model.Movie
-import isato.made.playtheater.util.DataMapper
+import isato.made.playtheater.core.presentation.model.Movie
+import isato.made.playtheater.core.util.PresentationDataMapper
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let {
-                        val data = DataMapper.mapDomainsToPresentations(it)
+                        val data = PresentationDataMapper.mapDomainsToPresentations(it)
                         emit(Resource.Success(data))
                     }
                 }

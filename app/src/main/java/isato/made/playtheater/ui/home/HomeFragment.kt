@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import isato.made.playtheater.core.data.Resource
-import isato.made.playtheater.ui.adapter.MovieAdapter
+import isato.made.playtheater.core.ui.adapter.MovieAdapter
 import isato.made.playtheater.databinding.FragmentHomeBinding
 import isato.made.playtheater.util.ext.setupActionBar
 

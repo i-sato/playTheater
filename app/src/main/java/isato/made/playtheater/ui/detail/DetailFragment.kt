@@ -17,8 +17,8 @@ import isato.made.playtheater.core.util.ext.loadImage
 import isato.made.playtheater.core.util.ext.loadTransformImage
 import isato.made.playtheater.core.util.ext.showSnackbarNotice
 import isato.made.playtheater.databinding.FragmentDetailBinding
-import isato.made.playtheater.model.MovieDetail
-import isato.made.playtheater.ui.adapter.GenreAdapter
+import isato.made.playtheater.core.presentation.model.MovieDetail
+import isato.made.playtheater.core.ui.adapter.GenreAdapter
 import isato.made.playtheater.util.ext.setupActionBar
 import jp.wasabeef.glide.transformations.ColorFilterTransformation
 import timber.log.Timber

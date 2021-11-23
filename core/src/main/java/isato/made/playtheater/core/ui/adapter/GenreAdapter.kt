@@ -1,12 +1,12 @@
-package isato.made.playtheater.ui.adapter
+package isato.made.playtheater.core.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import isato.made.playtheater.databinding.ItemGenreBinding
-import isato.made.playtheater.model.Genre
-import isato.made.playtheater.ui.adapter.diffutil.GenreDiffCallback
+import isato.made.playtheater.core.databinding.ItemGenreBinding
+import isato.made.playtheater.core.presentation.model.Genre
+import isato.made.playtheater.core.ui.adapter.diffutil.GenreDiffCallback
 
 class GenreAdapter: ListAdapter<Genre, GenreAdapter.GenreViewHolder>(GenreDiffCallback()) {
 

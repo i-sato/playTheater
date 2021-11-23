@@ -1,13 +1,13 @@
-package isato.made.playtheater.util
+package isato.made.playtheater.core.util
 
 import isato.made.playtheater.core.domain.model.MovieDetailDomain
 import isato.made.playtheater.core.domain.model.MovieDomain
 import isato.made.playtheater.core.domain.model.MovieGenreDomain
-import isato.made.playtheater.model.Genre
-import isato.made.playtheater.model.Movie
-import isato.made.playtheater.model.MovieDetail
+import isato.made.playtheater.core.presentation.model.Genre
+import isato.made.playtheater.core.presentation.model.Movie
+import isato.made.playtheater.core.presentation.model.MovieDetail
 
-object DataMapper {
+object PresentationDataMapper {
 
     fun mapDomainsToPresentations(input: List<MovieDomain>): List<Movie> {
         val movies = mutableListOf<Movie>()

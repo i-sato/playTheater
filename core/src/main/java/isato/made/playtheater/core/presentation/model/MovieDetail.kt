@@ -1,4 +1,4 @@
-package isato.made.playtheater.model
+package isato.made.playtheater.core.presentation.model
 
 
 data class MovieDetail(

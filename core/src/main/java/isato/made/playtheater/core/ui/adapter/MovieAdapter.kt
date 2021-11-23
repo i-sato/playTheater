@@ -1,13 +1,13 @@
-package isato.made.playtheater.ui.adapter
+package isato.made.playtheater.core.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import isato.made.playtheater.databinding.ItemListMovieBinding
+import isato.made.playtheater.core.databinding.ItemListMovieBinding
 import isato.made.playtheater.core.util.ext.loadImage
-import isato.made.playtheater.model.Movie
-import isato.made.playtheater.ui.adapter.diffutil.MovieDiffCallback
+import isato.made.playtheater.core.presentation.model.Movie
+import isato.made.playtheater.core.ui.adapter.diffutil.MovieDiffCallback
 
 class MovieAdapter: ListAdapter<Movie, MovieAdapter.ListMovieViewHolder>(MovieDiffCallback()) {
 

@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import isato.made.playtheater.core.data.Resource
 import isato.made.playtheater.core.domain.usecase.MainUseCase
-import isato.made.playtheater.model.MovieDetail
-import isato.made.playtheater.util.DataMapper
+import isato.made.playtheater.core.presentation.model.MovieDetail
+import isato.made.playtheater.core.util.PresentationDataMapper
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,7 +26,7 @@ class DetailViewModel @Inject constructor(
             mainUseCase.getMovieById(movieId).collect { resource ->
                 when(resource) {
                     is Resource.Success -> {
-                        val data = DataMapper.mapDetailDomainToPresentation(resource.data!!)
+                        val data = PresentationDataMapper.mapDetailDomainToPresentation(resource.data!!)
                         _movieDetail.postValue(Resource.Success(data))
                     }
                     is Resource.Loading -> {
@@ -43,7 +43,7 @@ class DetailViewModel @Inject constructor(
     fun setFavoriteMovie() {
         val movieDetail = _movieDetail.value?.data
         if (movieDetail != null) {
-            val movieDetailDomain = DataMapper.mapDetailPresentationToDomain(movieDetail)
+            val movieDetailDomain = PresentationDataMapper.mapDetailPresentationToDomain(movieDetail)
             val newState = !movieDetail.isFavorite
             viewModelScope.launch {
                 mainUseCase.setFavoriteMovie(movieDetailDomain, newState)
