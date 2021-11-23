@@ -11,14 +11,7 @@ object DateConverter {
     @TypeConverter
     @JvmStatic
     fun stringToTimestamp(value: String?): Long? {
-        return value?.let { dateString ->
-            val df = SimpleDateFormat("yyyy-MM-dd")
-            val date = df.parse(dateString)
-            date?.let {
-                val ts = Timestamp(it.time)
-                ts.time
-            }
-        }
+        return stringToTimestamp(value, "yyyy-MM-dd")
     }
 
     fun stringToTimestamp(value: String?, pattern: String = "yyyy-MM-dd"): Long? {
