@@ -1,18 +1,20 @@
 package isato.made.playtheater.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gaelmarhic.quadrant.QuadrantConstants
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import isato.made.playtheater.core.data.Resource
 import isato.made.playtheater.core.ui.adapter.MovieAdapter
 import isato.made.playtheater.databinding.FragmentHomeBinding
+import isato.made.playtheater.detail.ui.DetailActivity
 import isato.made.playtheater.util.ext.setupActionBar
 
 @AndroidEntryPoint
@@ -69,8 +71,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToDetailFragment(movieId: String, movieTitle: String) {
-        val action = HomeFragmentDirections.actionNavHomeToDetailFragment(movieId, movieTitle)
-        findNavController().navigate(action)
+        Intent().apply {
+            putExtra(DetailActivity.EXTRA_MOVIE_ID, movieId)
+            putExtra(DetailActivity.EXTRA_MOVIE_TITLE, movieTitle)
+            setClassName(requireContext(), QuadrantConstants.DETAIL_ACTIVITY)
+        }.also {
+            startActivity(it)
+        }
     }
 
     override fun onDestroyView() {

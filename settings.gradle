@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 rootProject.name = "PlayTheater"
 include ':app'
 include ':core'
+include ':detail'

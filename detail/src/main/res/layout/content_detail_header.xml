@@ -7,7 +7,7 @@
     android:padding="@dimen/detail_header_margin"
     android:visibility="gone"
     tools:background="@color/cardview_dark_background"
-    tools:context=".ui.detail.DetailFragment"
+    tools:context=".ui.DetailActivity"
     tools:visibility="visible">
 
     <ImageView

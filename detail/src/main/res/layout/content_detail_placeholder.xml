@@ -7,7 +7,7 @@
     android:scrollbars="none"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     app:shimmer_duration="1500"
-    tools:context=".ui.detail.DetailFragment">
+    tools:context=".ui.DetailActivity">
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:layout_width="match_parent"

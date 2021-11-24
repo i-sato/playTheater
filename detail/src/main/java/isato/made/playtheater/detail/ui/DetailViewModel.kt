@@ -1,4 +1,4 @@
-package isato.made.playtheater.ui.detail
+package isato.made.playtheater.detail.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

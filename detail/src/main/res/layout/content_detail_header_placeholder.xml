@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     app:shimmer_duration="1500"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.detail.DetailFragment">
+    tools:context=".ui.DetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
