@@ -15,6 +15,7 @@ buildscript {
         material_version = '1.4.0'
         multidex_version = '2.0.1'
         navigation_version = '2.3.5'
+        playcore_version = '1.10.2'
         quadrant_version = '1.6'
         retrofit_version = '2.9.0'
         room_version = '2.3.0'

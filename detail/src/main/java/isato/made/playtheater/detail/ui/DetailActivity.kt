@@ -39,6 +39,7 @@ class DetailActivity : AppCompatActivity() {
 
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
         val extras = intent.extras
         if (extras != null) {

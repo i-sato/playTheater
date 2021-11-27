@@ -14,6 +14,8 @@ class MainInteractor @Inject constructor(
     override fun getAllMovies(): Flow<Resource<List<MovieDomain>>> =
         mainRepository.getAllMovies()
 
+    override fun getFavoriteMovies(): Flow<List<MovieDomain>> = mainRepository.getFavoriteMovies()
+
     override fun getMovieById(movieId: String): Flow<Resource<MovieDetailDomain>> =
         mainRepository.getMovieById(movieId)
 

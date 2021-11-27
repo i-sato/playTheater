@@ -13,7 +13,10 @@ abstract class MovieDao {
     @Query("SELECT * FROM movie")
     abstract fun getAllMovies(): Flow<List<MovieEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("SELECT * FROM movie WHERE isFavorite = 1")
+    abstract fun getFavoriteMovies(): Flow<List<MovieEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract suspend fun insertMovies(movies: List<MovieEntity>)
 
     @Transaction

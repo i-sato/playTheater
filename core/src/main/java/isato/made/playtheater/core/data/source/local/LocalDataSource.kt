@@ -16,6 +16,8 @@ class LocalDataSource @Inject constructor(
 
     fun getAllMovies(): Flow<List<MovieEntity>> = movieDao.getAllMovies()
 
+    fun getFavoriteMovies(): Flow<List<MovieEntity>> = movieDao.getFavoriteMovies()
+
     suspend fun insertMovies(movies: List<MovieEntity>) = movieDao.insertMovies(movies)
 
     fun getMovieById(movieId: String): Flow<MovieWithGenre> = movieDao.getMovieById(movieId)

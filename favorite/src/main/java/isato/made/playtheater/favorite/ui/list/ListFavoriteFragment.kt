@@ -1,34 +1,44 @@
-package isato.made.playtheater.ui.home
+package isato.made.playtheater.favorite.ui.list
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gaelmarhic.quadrant.QuadrantConstants
-import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
-import isato.made.playtheater.core.data.Resource
+import dagger.hilt.android.EntryPointAccessors
 import isato.made.playtheater.core.ui.adapter.MovieAdapter
-import isato.made.playtheater.databinding.FragmentHomeBinding
 import isato.made.playtheater.detail.ui.DetailActivity
+import isato.made.playtheater.di.FavoriteModuleDependencies
+import isato.made.playtheater.favorite.databinding.FragmentListFavoriteBinding
+import isato.made.playtheater.favorite.di.DaggerFavoriteComponent
+import javax.inject.Inject
 
-@AndroidEntryPoint
-class HomeFragment : Fragment() {
+class ListFavoriteFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentListFavoriteBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel: HomeViewModel by viewModels()
+    @Inject
+    lateinit var favoriteViewModel: ListFavoriteViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val favoriteModuleDependencies = EntryPointAccessors.fromApplication(
+            requireActivity().applicationContext,
+            FavoriteModuleDependencies::class.java
+        )
+        DaggerFavoriteComponent.factory().create(favoriteModuleDependencies).inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentListFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,28 +52,13 @@ class HomeFragment : Fragment() {
                 navigateToDetailActivity(movieId, movieTitle)
             }
 
-            binding.rvMovie.apply {
+            binding.rvFavorite.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = movieAdapter
             }
 
-            homeViewModel.movies.observe(viewLifecycleOwner) { movies ->
-                when (movies) {
-                    is Resource.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        movieAdapter.submitList(movies.data)
-                    }
-                    is Resource.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-                    is Resource.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        movies.message?.let {
-                            Snackbar.make(view,
-                                it, Snackbar.LENGTH_SHORT).show()
-                        }
-                    }
-                }
+            favoriteViewModel.favoriteMovies.observe(viewLifecycleOwner) { favoriteMovies ->
+                movieAdapter.submitList(favoriteMovies)
             }
         }
     }

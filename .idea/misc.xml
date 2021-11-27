@@ -9,7 +9,7 @@
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/drawable/ic_home_blue_24.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/drawable/ic_playtheater.xml" value="0.11614583333333334" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/content_detail.xml" value="0.22" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/content_detail_header.xml" value="0.1" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/app/src/main/res/layout/content_detail_header_placeholder.xml" value="0.15" />
@@ -35,7 +35,8 @@
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/detail/src/main/res/layout/content_detail_header.xml" value="0.209375" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/detail/src/main/res/layout/content_detail_header_placeholder.xml" value="0.209375" />
         <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/detail/src/main/res/layout/content_detail_placeholder.xml" value="0.1" />
-        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/favorite/src/main/res/layout/fragment_favorite.xml" value="0.22" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/favorite/src/main/res/layout/activity_favorite.xml" value="0.1" />
+        <entry key="..\:/Project/Android/Dicoding/Menjadi Android Developer Expert/Submission/PlayTheater/favorite/src/main/res/layout/fragment_favorite.xml" value="0.1" />
       </map>
     </option>
   </component>

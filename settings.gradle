@@ -9,3 +9,4 @@ rootProject.name = "PlayTheater"
 include ':app'
 include ':core'
 include ':detail'
+include ':favorite'

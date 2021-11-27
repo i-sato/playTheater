@@ -42,6 +42,10 @@ class MainRepositoryImpl @Inject constructor(
             }
         }.asFlow()
 
+    override fun getFavoriteMovies(): Flow<List<MovieDomain>> {
+        return localDataSource.getFavoriteMovies().map { DataMapper.mapEntitiesToDomain(it) }
+    }
+
     override fun getMovieById(movieId: String): Flow<Resource<MovieDetailDomain>> =
         object : NetworkBoundResource<MovieDetailDomain, MovieDetailResponse>() {
             override fun loadFromDB(): Flow<MovieDetailDomain> =
