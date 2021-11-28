@@ -39,7 +39,8 @@
                 layout="@layout/content_detail_header_placeholder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="?attr/actionBarSize" />
+                android:layout_marginTop="?attr/actionBarSize"
+                tools:ignore="DuplicateIncludedIds" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

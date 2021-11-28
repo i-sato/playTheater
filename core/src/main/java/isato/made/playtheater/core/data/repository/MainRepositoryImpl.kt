@@ -54,7 +54,7 @@ class MainRepositoryImpl @Inject constructor(
                 }
 
             override fun shouldFetch(data: MovieDetailDomain?): Boolean =
-                data?.genres == null || data.genres.isEmpty()
+                data?.genres.isNullOrEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<MovieDetailResponse>> =
                 remoteDataSource.getMovieById(movieId)

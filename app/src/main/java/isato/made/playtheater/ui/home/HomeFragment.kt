@@ -19,8 +19,7 @@ import isato.made.playtheater.detail.ui.DetailActivity
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private var homeBinding: FragmentHomeBinding? = null
 
     private val homeViewModel: HomeViewModel by viewModels()
 
@@ -28,7 +27,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        homeBinding = binding
         return binding.root
     }
 
@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
                 navigateToDetailActivity(movieId, movieTitle)
             }
 
-            binding.rvMovie.apply {
+            homeBinding?.rvMovie?.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = movieAdapter
             }
@@ -50,14 +50,14 @@ class HomeFragment : Fragment() {
             homeViewModel.movies.observe(viewLifecycleOwner) { movies ->
                 when (movies) {
                     is Resource.Success -> {
-                        binding.progressBar.visibility = View.GONE
+                        homeBinding?.progressBar?.visibility = View.GONE
                         movieAdapter.submitList(movies.data)
                     }
                     is Resource.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
+                        homeBinding?.progressBar?.visibility = View.VISIBLE
                     }
                     is Resource.Error -> {
-                        binding.progressBar.visibility = View.GONE
+                        homeBinding?.progressBar?.visibility = View.GONE
                         movies.message?.let {
                             Snackbar.make(view,
                                 it, Snackbar.LENGTH_SHORT).show()
@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        homeBinding = null
     }
 
 }

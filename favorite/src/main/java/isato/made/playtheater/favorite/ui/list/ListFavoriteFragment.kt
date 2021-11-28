@@ -18,8 +18,7 @@ import javax.inject.Inject
 
 class ListFavoriteFragment : Fragment() {
 
-    private var _binding: FragmentListFavoriteBinding? = null
-    private val binding get() = _binding!!
+    private var listFavoriteBinding: FragmentListFavoriteBinding? = null
 
     @Inject
     lateinit var favoriteViewModel: ListFavoriteViewModel
@@ -38,7 +37,8 @@ class ListFavoriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListFavoriteBinding.inflate(inflater, container, false)
+        val binding = FragmentListFavoriteBinding.inflate(inflater, container, false)
+        listFavoriteBinding = binding
         return binding.root
     }
 
@@ -52,13 +52,15 @@ class ListFavoriteFragment : Fragment() {
                 navigateToDetailActivity(movieId, movieTitle)
             }
 
-            binding.rvFavorite.apply {
+            listFavoriteBinding?.rvFavorite?.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = movieAdapter
             }
 
             favoriteViewModel.favoriteMovies.observe(viewLifecycleOwner) { favoriteMovies ->
                 movieAdapter.submitList(favoriteMovies)
+                listFavoriteBinding?.emptyView?.root?.visibility =
+                    if (favoriteMovies.isNotEmpty()) View.GONE else View.VISIBLE
             }
         }
     }
@@ -75,7 +77,7 @@ class ListFavoriteFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        listFavoriteBinding = null
     }
 
 }

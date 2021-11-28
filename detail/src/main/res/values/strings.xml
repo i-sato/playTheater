@@ -3,5 +3,7 @@
     <string name="release_date">Release Date</string>
     <string name="overview">Overview</string>
     <string name="add_favorite">Add to favorite</string>
+    <string name="save_favorite">Saved to your favorite</string>
+    <string name="delete_favorite">Deleted from favorite</string>
     <string name="error">Oops.. something went wrong</string>
 </resources>

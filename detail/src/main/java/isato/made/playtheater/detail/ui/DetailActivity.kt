@@ -22,11 +22,6 @@ import timber.log.Timber
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_MOVIE_ID = "extra_movie_id"
-        const val EXTRA_MOVIE_TITLE = "extra_movie_title"
-    }
-
     private lateinit var binding: ActivityDetailBinding
     private val headerBinding get() = binding.contentHeader
     private val detailBinding get() = binding.contentDetail
@@ -53,7 +48,8 @@ class DetailActivity : AppCompatActivity() {
 
                 genreAdapter = GenreAdapter()
                 binding.contentDetail.rvGenre.apply {
-                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    layoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     adapter = genreAdapter
                 }
 
@@ -95,6 +91,7 @@ class DetailActivity : AppCompatActivity() {
                 detailViewModel.setFavoriteMovie()
                 val newState = !favorite
                 setFavorite(newState)
+                showFavoriteMessage(newState)
             }
         }
     }
@@ -125,5 +122,16 @@ class DetailActivity : AppCompatActivity() {
                 R.drawable.ic_favorite_outline_white_24
             }
         )
+    }
+
+    private fun showFavoriteMessage(isFavorite: Boolean) {
+        binding.root.showSnackbarNotice(
+            if (isFavorite) getString(R.string.save_favorite) else getString(R.string.delete_favorite)
+        )
+    }
+
+    companion object {
+        const val EXTRA_MOVIE_ID = "extra_movie_id"
+        const val EXTRA_MOVIE_TITLE = "extra_movie_title"
     }
 }

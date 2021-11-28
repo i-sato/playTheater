@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import isato.made.playtheater.core.BuildConfig
 import isato.made.playtheater.core.BuildConfig.API_URL
 import isato.made.playtheater.core.data.source.remote.network.ApiService
 import okhttp3.OkHttpClient
@@ -19,8 +20,12 @@ object NetworkModule {
 
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
+        val loggingInterceptor = when {
+            BuildConfig.DEBUG -> HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            else -> HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
         return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(loggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .build()
