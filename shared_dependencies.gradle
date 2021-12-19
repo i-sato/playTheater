@@ -19,6 +19,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    // LeakCanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+
     // Multidex
     implementation "androidx.multidex:multidex:$multidex_version"
 
