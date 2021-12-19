@@ -9,12 +9,14 @@
 package isato.made.playtheater.ui.home
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gaelmarhic.quadrant.QuadrantConstants
 import com.google.android.material.snackbar.Snackbar
@@ -51,7 +53,10 @@ class HomeFragment : Fragment() {
             }
 
             homeBinding?.rvMovie?.apply {
-                layoutManager = LinearLayoutManager(context)
+                layoutManager = when (resources.configuration.orientation) {
+                    Configuration.ORIENTATION_LANDSCAPE -> GridLayoutManager(context, 2)
+                    else -> LinearLayoutManager(context)
+                }
                 adapter = movieAdapter
             }
 
@@ -67,8 +72,10 @@ class HomeFragment : Fragment() {
                     is Resource.Error -> {
                         homeBinding?.progressBar?.visibility = View.GONE
                         movies.message?.let {
-                            Snackbar.make(view,
-                                it, Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(
+                                view,
+                                it, Snackbar.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
