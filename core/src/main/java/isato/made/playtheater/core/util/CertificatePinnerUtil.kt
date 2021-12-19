@@ -6,6 +6,8 @@
  * Copyright (c) 2021. All rights reserved.
  */
 
+@file:Suppress("SpellCheckingInspection")
+
 package isato.made.playtheater.core.util
 
 import okhttp3.CertificatePinner
