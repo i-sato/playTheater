@@ -17,6 +17,7 @@ buildscript {
         hilt_version = '2.40.1'
         kotlin_coroutines_version = '1.4.1'
         kotlin_version = '1.5.31'
+        leakcanary_version = '2.7'
         legacy_version = '1.0.0'
         lifecycle_version = '2.4.0'
         logging_interceptor_version = '4.9.0'
