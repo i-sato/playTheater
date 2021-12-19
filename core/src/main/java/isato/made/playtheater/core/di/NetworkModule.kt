@@ -15,6 +15,7 @@ import dagger.hilt.components.SingletonComponent
 import isato.made.playtheater.core.BuildConfig
 import isato.made.playtheater.core.BuildConfig.API_URL
 import isato.made.playtheater.core.data.source.remote.network.ApiService
+import isato.made.playtheater.core.util.CertificatePinnerUtil
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -36,6 +37,7 @@ object NetworkModule {
             .addInterceptor(loggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(CertificatePinnerUtil.createCertificatePinner())
             .build()
     }
 
