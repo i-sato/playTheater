@@ -23,7 +23,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        consumerProguardFiles "consumer-rules.pro", "glide.pro", "gson.pro", "retrofit.pro", "sqlcipher.pro", "okio.pro"
 
         def BASE_URL = "https://api.themoviedb.org/3/"
         def BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original"
