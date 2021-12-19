@@ -1,3 +1,11 @@
+<!--
+  ~ PlayTheater.app
+  ~ ic_favorite_blue_24.xml
+  ~ Created by Isato on 19/12/2021 8:43:11
+  ~ Source code available on: https://github.com/i-sato/PlayTheater
+  ~ Copyright (c) 2021. All rights reserved.
+  -->
+
 <vector android:height="24dp" android:tint="#389CCB"
     android:viewportHeight="24" android:viewportWidth="24"
     android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">

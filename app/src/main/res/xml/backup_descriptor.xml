@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ PlayTheater.app
+  ~ backup_descriptor.xml
+  ~ Created by Isato on 19/12/2021 8:43:11
+  ~ Source code available on: https://github.com/i-sato/PlayTheater
+  ~ Copyright (c) 2021. All rights reserved.
+  -->
+
 <full-backup-content>
     <!-- Exclude specific shared preferences that contain GCM registration Id -->
 </full-backup-content>

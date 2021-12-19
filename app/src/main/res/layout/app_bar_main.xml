@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ PlayTheater.app
+  ~ app_bar_main.xml
+  ~ Created by Isato on 19/12/2021 8:43:11
+  ~ Source code available on: https://github.com/i-sato/PlayTheater
+  ~ Copyright (c) 2021. All rights reserved.
+  -->
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

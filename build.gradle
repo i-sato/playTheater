@@ -1,3 +1,11 @@
+/*
+ * PlayTheater
+ * build.gradle
+ * Created by Isato on 19/12/2021 8:43:12
+ * Source code available on: https://github.com/i-sato/PlayTheater
+ * Copyright (c) 2021. All rights reserved.
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
