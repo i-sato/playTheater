@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 abstract class MovieDao {
 
-    @Query("SELECT * FROM movie")
+    @Query("SELECT * FROM movie ORDER BY release_date DESC")
     abstract fun getAllMovies(): Flow<List<MovieEntity>>
 
     @Query("SELECT * FROM movie WHERE isFavorite = 1")

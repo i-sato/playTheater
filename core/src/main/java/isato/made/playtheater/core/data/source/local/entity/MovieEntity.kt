@@ -9,14 +9,11 @@
 package isato.made.playtheater.core.data.source.local.entity
 
 import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
+import androidx.room.*
 import isato.made.playtheater.core.util.DateConverter
 
-@Entity(tableName = "movie")
-data class MovieEntity (
+@Entity(tableName = "movie", indices = [Index(value = ["movieId"], unique = true)])
+data class MovieEntity(
 
     @PrimaryKey
     @NonNull

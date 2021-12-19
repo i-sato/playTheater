@@ -11,9 +11,10 @@ package isato.made.playtheater.core.data.source.local.entity
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "genre")
+@Entity(tableName = "genre", indices = [Index(value = ["genreId"], unique = true)])
 data class GenreEntity(
 
     @PrimaryKey

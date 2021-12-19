@@ -15,8 +15,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import isato.made.playtheater.core.BuildConfig
+import isato.made.playtheater.core.BuildConfig.DB_KEY
 import isato.made.playtheater.core.data.source.local.room.MovieDao
 import isato.made.playtheater.core.data.source.local.room.MovieDatabase
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import javax.inject.Singleton
 
 @Module
@@ -27,10 +31,21 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
-    ): MovieDatabase = Room.databaseBuilder(
-        context,
-        MovieDatabase::class.java, "playTheater.db"
-    ).fallbackToDestructiveMigration().build()
+    ): MovieDatabase {
+        val dbBuilder = Room.databaseBuilder(
+            context,
+            MovieDatabase::class.java, "playTheater.db"
+        ).also { builder ->
+            when {
+                BuildConfig.DEBUG -> builder.fallbackToDestructiveMigration()
+                else -> {
+                    val factory = SupportFactory(SQLiteDatabase.getBytes(DB_KEY.toCharArray()))
+                    builder.openHelperFactory(factory)
+                }
+            }
+        }
+        return dbBuilder.build()
+    }
 
     @Provides
     fun provideMovieDao(database: MovieDatabase): MovieDao =

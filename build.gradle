@@ -16,17 +16,14 @@ buildscript {
         glide_transform_version = "4.3.0"
         hilt_version = '2.40.1'
         kotlin_coroutines_version = '1.4.1'
-        kotlin_version = '1.5.31'
+        kotlin_version = '1.6.10'
         legacy_version = '1.0.0'
         lifecycle_version = '2.4.0'
-        logging_interceptor_version = '4.9.0'
         material_version = '1.4.0'
         multidex_version = '2.0.1'
         navigation_version = '2.3.5'
         playcore_version = '1.10.2'
         quadrant_version = '1.6'
-        retrofit_version = '2.9.0'
-        room_version = '2.3.0'
         shimmer_version = '0.5.0'
         timber_version = '4.7.1'
 
@@ -44,8 +41,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.3"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
+        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         classpath "gradle.plugin.com.gaelmarhic:quadrant:$quadrant_version"

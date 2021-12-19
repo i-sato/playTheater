@@ -30,6 +30,7 @@ android {
         buildConfigField "String", "API_URL", "\"$BASE_URL\""
         buildConfigField "String", "API_KEY_QUERY", "\"?api_key=$API_KEY\""
         buildConfigField "String", "BASE_IMAGE_URL", "\"$BASE_IMAGE_URL\""
+        buildConfigField "String", "DB_KEY", "\"$DB_KEY\""
     }
 
     buildTypes {
@@ -63,13 +64,23 @@ dependencies {
     api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     // Retrofit
+    def logging_interceptor_version = '4.9.0'
+    def retrofit_version = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 
     // Room
+    def room_version = '2.4.0'
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    // SQLCipher
+    def sqlcipher_version = '4.4.0'
+    def sqlite_ktx_version = '2.2.0'
+    implementation "net.zetetic:android-database-sqlcipher:$sqlcipher_version"
+    implementation "androidx.sqlite:sqlite-ktx:$sqlite_ktx_version"
+
 }
