@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ PlayTheater
+  ~ AndroidManifest.xml
+  ~ Created by Isato on 21/12/2021 14:10:38
+  ~ Source code available on: https://github.com/i-sato/PlayTheater
+  ~ Copyright (c) 2021. All rights reserved.
+  -->
+
+<manifest package="isato.made.playtheater.testlib">
+
+</manifest>

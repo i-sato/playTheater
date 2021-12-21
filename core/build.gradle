@@ -50,6 +50,10 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    sourceSets {
+        test.java.srcDirs += "src/sharedTest/java"
+    }
 }
 
 dependencies {

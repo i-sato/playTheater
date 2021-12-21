@@ -48,4 +48,6 @@ android {
 
 dependencies {
     implementation project(":core")
+
+    testImplementation project(":testlib")
 }

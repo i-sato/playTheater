@@ -1,16 +1,15 @@
 /*
- * PlayTheater.favorite
+ * PlayTheater
  * build.gradle
- * Created by Isato on 19/12/2021 8:43:12
+ * Created by Isato on 21/12/2021 14:10:38
  * Source code available on: https://github.com/i-sato/PlayTheater
  * Copyright (c) 2021. All rights reserved.
  */
 
 plugins {
-    id 'com.android.dynamic-feature'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 apply from: '../shared_dependencies.gradle'
 
@@ -18,13 +17,13 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "isato.made.playtheater.favorite"
         minSdk 21
         targetSdk 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -33,21 +32,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildFeatures {
-        viewBinding true
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
 dependencies {
     implementation project(":core")
-    implementation project(":app")
-    implementation project(":detail")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    // Play Core
-    implementation "com.google.android.play:core:$playcore_version"
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-
-    testImplementation project(":testlib")
+    implementation "junit:junit:$junit_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 }

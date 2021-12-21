@@ -42,7 +42,13 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
 
     // Unit Test
+    testImplementation "androidx.arch.core:core-testing:$arch_core_test_version"
+    testImplementation "app.cash.turbine:turbine:$turbine_version"
+    testImplementation "com.google.truth:truth:$truth_version"
     testImplementation "junit:junit:$junit_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
 
     // Integration Test
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"

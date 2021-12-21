@@ -21,9 +21,9 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     mainUseCase: MainUseCase
-): ViewModel() {
+) : ViewModel() {
     val movies = liveData<Resource<List<Movie>>> {
-        mainUseCase.getAllMovies().collect {  resource ->
+        mainUseCase.getAllMovies().collect { resource ->
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let {
@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
                     }
                 }
                 is Resource.Loading -> {
-                    emit (Resource.Loading())
+                    emit(Resource.Loading())
                 }
                 is Resource.Error -> {
                     resource.message?.let {

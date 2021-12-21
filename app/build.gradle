@@ -61,4 +61,6 @@ dependencies {
 
     // Play Core
     implementation "com.google.android.play:core:$playcore_version"
+
+    testImplementation project(":testlib")
 }
