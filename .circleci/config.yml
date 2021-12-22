@@ -4,16 +4,6 @@ orbs:
   android: circleci/android@1.0.3
 
 jobs:
-  build:
-    executor: android/android
-    steps:
-      - checkout
-      - restore_cache:
-          key: android-orb-v1-
-      - run:
-          name: Chmod permissions
-          command: sudo chmod +x ./gradlew
-
   unit-test:
     executor:
       name: android/android-machine
@@ -23,6 +13,9 @@ jobs:
       - checkout
       - android/restore-gradle-cache
       - android/restore-build-cache
+      - run:
+          name: chmod permissions
+          command: sudo chmod +x ./gradlew
       - android/run-tests:
           test-command: ./gradlew testDebug
       - android/save-gradle-cache
@@ -48,6 +41,9 @@ jobs:
       resource-class: xlarge
     steps:
       - checkout
+      - run:
+          name: chmod permissions
+          command: sudo chmod +x ./gradlew
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: << parameters.system-image >>
@@ -55,7 +51,7 @@ jobs:
           name: Android Test results
           command: |
             mkdir -p ~/test-results/junit/
-            find . ~type f -regex ".*/build.outputs/androidTest-results/*.xml" -exec cp {} ~/test-results/junit/ \;
+            find . -type f -regex ".*/build/outputs/androidTest-results/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
           path: ~/test-results
@@ -71,6 +67,9 @@ jobs:
       - android/restore-gradle-cache
       - android/restore-build-cache
       - run:
+          name: chmod permissions
+          command: sudo chmod +x ./gradlew
+      - run:
          name: Assemble release build
          command: |
           ./gradlew assembleRelease
@@ -80,7 +79,6 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - build
       - unit-test
       - android/run-ui-tests:
           filters:
