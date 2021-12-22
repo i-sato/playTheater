@@ -77,14 +77,6 @@ workflows:
   build-and-test:
     jobs:
       - unit-test
-      - android/run-ui-tests:
-          pre-steps:
-            - run:
-                name: chmod permissions
-                command: sudo chmod +x ./gradlew
-          filters:
-              branches:
-                only: unit-test
       - android-test:
           matrix:
             alias: android-test-all
